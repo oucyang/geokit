@@ -5,13 +5,11 @@ import (
 	"strconv"
 	"strings"
 	"testing"
-
-	"github.com/oucyang/geokit/geom"
 )
 
 type PointInPolygonCase struct {
-	geom.Polygon
-	*geom.Point
+	Polygon
+	*Point
 	Answer bool
 }
 
@@ -21,8 +19,8 @@ func (c *PointInPolygonCase) Test(t *testing.T) {
 	}
 }
 
-func parseCoords(coords string) []*geom.Point {
-	var points = make([]*geom.Point, 0)
+func parseCoords(coords string) []*Point {
+	var points = make([]*Point, 0)
 	valueStrs := strings.Split(coords, ";")
 	length := len(valueStrs) / 2
 	for i := 0; i < length; i++ {
@@ -34,17 +32,17 @@ func parseCoords(coords string) []*geom.Point {
 		if err != nil {
 			panic(fmt.Errorf("bad float '%s' - %v", valueStrs[i*2+1], err))
 		}
-		points = append(points, geom.NewPoint(lon, lat))
+		points = append(points, NewPoint(lon, lat))
 	}
 	return points
 
 }
 
-func newPolygonByCoords(coords string) geom.Polygon {
-	return geom.Polygon(parseCoords(coords))
+func newPolygonByCoords(coords string) Polygon {
+	return Polygon(parseCoords(coords))
 }
 
-func newPointByCoords(coords string) *geom.Point {
+func newPointByCoords(coords string) *Point {
 	return parseCoords(coords)[0]
 }
 

@@ -1,4 +1,4 @@
-package geom
+package compute
 
 import (
 	"fmt"
@@ -36,3 +36,4 @@ func NewLine(points []*Point) Line {
 func NewPolygon(points []*Point) Polygon {
 	return Polygon(points)
 }
+

@@ -2,8 +2,6 @@ package compute
 
 import (
 	"math"
-
-	"github.com/oucyang/geokit/geom"
 )
 
 /*
@@ -22,14 +20,14 @@ https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection
 */
 
 // http://www.eecs.umich.edu/courses/eecs380/HANDOUTS/PROJ2/InsidePoly.html
-func PointInPolygon(p *geom.Point, polygon geom.Polygon) bool {
+func PointInPolygon(p *Point, polygon Polygon) bool {
 	if len(polygon) < 3 {
 		return false
 	}
 	var (
 		inside  = false
 		xinters float64
-		p1, p2  *geom.Point
+		p1, p2  *Point
 	)
 	p1 = polygon[0]
 	for i := 1; i <= len(polygon); i++ {
@@ -53,14 +51,14 @@ func PointInPolygon(p *geom.Point, polygon geom.Polygon) bool {
 	return inside
 }
 
-func PointInPolygon2(p *geom.Point, polygon geom.Polygon) bool {
+func PointInPolygon2(p *Point, polygon Polygon) bool {
 	if len(polygon) < 3 {
 		return false
 	}
 	var (
 		inside  = false
 		xinters float64
-		p1, p2  *geom.Point
+		p1, p2  *Point
 	)
 	p1 = polygon[0]
 	for i := 1; i <= len(polygon); i++ {
