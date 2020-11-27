@@ -1,9 +1,6 @@
 package compute
 
 import (
-	"fmt"
-	"strconv"
-	"strings"
 	"testing"
 )
 
@@ -17,33 +14,6 @@ func (c *PointInPolygonCase) Test(t *testing.T) {
 	if PointInPolygon2(c.Point, c.Polygon) != c.Answer {
 		t.Fatalf("wrong answer [%s] [%+v] right answer=%t", c.Point, c.Polygon, c.Answer)
 	}
-}
-
-func parseCoords(coords string) []*Point {
-	var points = make([]*Point, 0)
-	valueStrs := strings.Split(coords, ";")
-	length := len(valueStrs) / 2
-	for i := 0; i < length; i++ {
-		lon, err := strconv.ParseFloat(valueStrs[i*2], 64)
-		if err != nil {
-			panic(fmt.Errorf("bad float '%s' -- %v", valueStrs[i*2], err))
-		}
-		lat, err := strconv.ParseFloat(valueStrs[i*2+1], 64)
-		if err != nil {
-			panic(fmt.Errorf("bad float '%s' - %v", valueStrs[i*2+1], err))
-		}
-		points = append(points, NewPoint(lon, lat))
-	}
-	return points
-
-}
-
-func newPolygonByCoords(coords string) Polygon {
-	return Polygon(parseCoords(coords))
-}
-
-func newPointByCoords(coords string) *Point {
-	return parseCoords(coords)[0]
 }
 
 func TestPointInPolygon(t *testing.T) {
