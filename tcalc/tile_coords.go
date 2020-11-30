@@ -13,13 +13,29 @@ type TileCoord struct {
 	X, Y, Z int
 }
 
+func (t *TileCoord) TopLeftChild() *TileCoord {
+	return &TileCoord{Z: t.Z + 1, X: t.X << 1, Y: t.Y << 1}
+}
+
+func (t *TileCoord) TopRightChild() *TileCoord {
+	return &TileCoord{Z: t.Z + 1, X: (t.X << 1) + 1, Y: t.Y << 1}
+}
+
+func (t *TileCoord) BottomLeftChild() *TileCoord {
+	return &TileCoord{Z: t.Z + 1, X: t.X << 1, Y: (t.Y << 1) + 1}
+}
+
+func (t *TileCoord) BottomRightChild() *TileCoord {
+	return &TileCoord{Z: t.Z + 1, X: (t.X << 1) + 1, Y: (t.Y << 1) + 1}
+}
+
 func (t *TileCoord) Children() []*TileCoord {
 	z, x, y := t.Z+1, t.X<<1, t.Y<<1
 	return []*TileCoord{
-		&TileCoord{Z: z, X: x, Y: y},
-		&TileCoord{Z: z, X: x, Y: y + 1},
-		&TileCoord{Z: z, X: x + 1, Y: y},
-		&TileCoord{Z: z, X: x + 1, Y: y + 1},
+		&TileCoord{Z: z, X: x, Y: y},         // top left
+		&TileCoord{Z: z, X: x + 1, Y: y},     // top right
+		&TileCoord{Z: z, X: x, Y: y + 1},     // bottom left
+		&TileCoord{Z: z, X: x + 1, Y: y + 1}, // bottom right
 	}
 }
 

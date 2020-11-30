@@ -15,7 +15,3 @@ func TestTileCoord_Children(t *testing.T) {
 	children := tile.Children()
 	t.Logf("%+v", children)
 }
-
-func TestDecodeTile(t *testing.T) {
-	DecodeTile("D:\\mapbox\\784.vector.pbf")
-}
