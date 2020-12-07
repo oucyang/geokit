@@ -43,13 +43,19 @@ func (t *TileCoord) String() string {
 	return fmt.Sprintf("%d_%d_%d", t.Z, t.X, t.Y)
 }
 
+func (t *TileCoord) MapboxUrl(accessToken string) string {
+	return fmt.Sprintf(mapboxUrl, t.Z, t.X, t.Y, accessToken)
+}
+
 /*
  0: "https://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2/{z}/{x}/{y}.vector.pbf?access_token=?"
  1: "https://b.tiles.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2/{z}/{x}/{y}.vector.pbf?access_token=?"
+    "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2/{z}/{x}/{y}.vector.pbf?sku=101Z5P5w9GWb7&access_token=?"
 */
 const (
 	mapboxUrl0 = "https://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2/%d/%d/%d.vector.pbf?access_token=%s"
 	mapboxUrl1 = "https://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2/%d/%d/%d.vector.pbf?access_token=%s"
+	mapboxUrl  = "https://api.mapbox.com/v4/mapbox.mapbox-streets-v8,mapbox.mapbox-terrain-v2/%d/%d/%d.vector.pbf?&access_token=%s"
 )
 
 func (t *TileCoord) MapboxTileUrl(accessToke string) string {

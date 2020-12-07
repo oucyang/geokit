@@ -10,8 +10,8 @@ func TestLonLat2Tile(t *testing.T) {
 }
 
 func TestTile2LonLat(t *testing.T) {
-	x, y := 13, 6
-	zoom := 4
+	x, y := 53961, 24824
+	zoom := 16
 	lon, lat := Tile2LonLat(x, y, zoom)
 	t.Logf("lon;lat=%.6f;%.6f", lon, lat)
 }
